@@ -1,0 +1,22 @@
+{
+  "name": "Fazril Syaveral Hillaby",
+  "short_name": "Fazril Portfolio",
+  "description": "Fazril Syaveral Hillaby, a Fullstack Web Developer",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#22c55e",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
