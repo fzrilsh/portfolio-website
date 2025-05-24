@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
-import { TerminalIcon, Download } from "lucide-react"
+import { TerminalIcon, Download, Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import TerminalOutput from "@/components/terminal-output"
 import TerminalInput from "@/components/terminal-input"
@@ -14,6 +14,7 @@ export default function Terminal() {
   const terminalRef = useRef<HTMLDivElement>(null)
   const [isPWAInstallable, setIsPWAInstallable] = useState(false)
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const availableCommands = [
     { command: "help", description: "Show available commands" },
@@ -41,14 +42,10 @@ export default function Terminal() {
     return () => clearTimeout(timer)
   }, [])
 
-  // PWA installation
   useEffect(() => {
     const handleBeforeInstallPrompt = (e: Event) => {
-      // Prevent Chrome 67 and earlier from automatically showing the prompt
       e.preventDefault()
-      // Stash the event so it can be triggered later
       setDeferredPrompt(e)
-      // Update UI to notify the user they can add to home screen
       setIsPWAInstallable(true)
     }
 
@@ -132,37 +129,89 @@ export default function Terminal() {
 
   const changeFullscreen = () => {
     const element = document.documentElement
-    if('requestFullscreen' in element) {
+    if ('requestFullscreen' in element) {
       element.requestFullscreen()
-    }else if('webkitRequestFullscreen' in (element as any)){
+    } else if ('webkitRequestFullscreen' in (element as any)) {
       (element as any).webkitRequestFullscreen()
-    }else if ('msRequestFullscreen' in (element as any)){
+    } else if ('msRequestFullscreen' in (element as any)) {
       (element as any).msRequestFullscreen()
     }
   }
 
   return (
     <div className="relative h-screen flex flex-col">
-      <div className="flex items-center gap-2 p-2 bg-gray-900 border-b border-gray-800 rounded-t-lg">
+      <div className="flex items-center justify-between p-2 bg-gray-900 border-b border-gray-800 rounded-t-lg relative">
         <div className="flex gap-1.5">
           <div className="w-3 h-3 rounded-full bg-red-500" aria-hidden="true" />
-          <div className="w-3 h-3 rounded-full bg-yellow-500" aria-hidden="true" onClick={() => document.fullscreenElement && document.exitFullscreen()} />
-          <div className="w-3 h-3 rounded-full bg-green-500" aria-hidden="true" onClick={changeFullscreen} />
+          <div
+            className="w-3 h-3 rounded-full bg-yellow-500"
+            aria-hidden="true"
+            onClick={() => document.fullscreenElement && document.exitFullscreen()}
+          />
+          <div
+            className="w-3 h-3 rounded-full bg-green-500"
+            aria-hidden="true"
+            onClick={changeFullscreen}
+          />
         </div>
-        <div className="flex-1 text-center text-sm text-gray-400">fazril@portfolio ~ </div>
+
+        <div className="absolute left-1/2 transform -translate-x-1/2 text-sm text-gray-400">
+          fazril@portfolio ~
+        </div>
+
         <div className="flex items-center gap-2">
-          {isPWAInstallable && (
-            <Button
-              size="sm"
-              variant="outline"
-              className="text-xs bg-transparent border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-green-400 flex items-center gap-1"
-              onClick={installPWA}
-              aria-label="Install as app"
+          <div className="md:hidden">
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
+              {isMenuOpen ? <X className="w-5 h-5 text-gray-300" /> : <Menu className="w-5 h-5 text-gray-300" />}
+            </button>
+
+            {isMenuOpen && (
+              <div className="absolute right-2 top-12 bg-gray-800 border border-gray-700 rounded-lg shadow-lg p-3 z-50 flex flex-col gap-2">
+                <a
+                  href="/fazril-syaveral-hillaby.pdf"
+                  download
+                  className="inline-flex items-center gap-1 text-xs px-2 py-1 border border-gray-700 text-gray-300 bg-transparent hover:bg-gray-800 hover:text-green-400 rounded-md"
+                  aria-label="Download CV"
+                >
+                  <Download className="h-3 w-3" />
+                  Download CV
+                </a>
+                {isPWAInstallable && (
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="text-xs bg-transparent border-gray-700 text-gray-300 hover:bg-gray-700 hover:text-green-400"
+                    onClick={installPWA}
+                  >
+                    <Download className="h-3 w-3" /> Install
+                  </Button>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div className="hidden md:flex items-center gap-2">
+            <a
+              href="/fazril-syaveral-hillaby.pdf"
+              download
+              className="inline-flex items-center gap-1 text-xs px-2 py-1 border border-gray-700 text-gray-300 bg-transparent hover:bg-gray-800 hover:text-green-400 rounded-md"
+              aria-label="Download CV"
             >
-              <Download className="h-3 w-3" /> Install
-            </Button>
-          )}
-          <TerminalIcon className="h-4 w-4 text-gray-400" aria-hidden="true" />
+              <Download className="h-3 w-3" />
+              Download CV
+            </a>
+            {isPWAInstallable && (
+              <Button
+                size="sm"
+                variant="outline"
+                className="text-xs bg-transparent border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-green-400 flex items-center gap-1"
+                onClick={installPWA}
+              >
+                <Download className="h-3 w-3" /> Install
+              </Button>
+            )}
+            <TerminalIcon className="h-4 w-4 text-gray-400" />
+          </div>
         </div>
       </div>
 
