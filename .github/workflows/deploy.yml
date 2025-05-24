@@ -22,14 +22,14 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Build Next.js project
-        run: |
-          npm run build
+        run: npm run build
 
-      - name: Upload to cPanel via FTP
-        uses: sebastianpopp/ftp-action@v1.1.0
+      - name: Upload via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          host: ${{ secrets.CPANEL_HOST }}
-          user: ${{ secrets.CPANEL_USERNAME }}
+          server: ${{ secrets.CPANEL_HOST }}
+          username: ${{ secrets.CPANEL_USERNAME }}
           password: ${{ secrets.CPANEL_PASSWORD }}
-          localDir: out/
-          remoteDir: /
+          local-dir: out/
+          server-dir: /
+          dangerous-clean-slate: true
