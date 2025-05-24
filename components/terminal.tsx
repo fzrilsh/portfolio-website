@@ -29,7 +29,7 @@ export default function Terminal() {
     { command: "contact", description: "Display my contact information" },
     { command: "clear", description: "Clear the terminal" },
     { command: "all", description: "Show all information" },
-    { command: "bg-remover", description: "Remove background on your photo" }
+    { command: "bg remover", description: "Remove background on your photo" }
   ]
 
   useEffect(() => {
@@ -109,7 +109,7 @@ export default function Terminal() {
       case "all":
         output = "all"
         break
-      case "bg-remover":
+      case "bg remover":
         router.push('/bg-remover')
         break
       case "":
