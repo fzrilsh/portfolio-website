@@ -263,7 +263,7 @@ export default function TerminalOutput({ type }: TerminalOutputProps) {
               <CardContent className="space-y-4">
                 {contactData.channels.map((channel, index) => (
                   <div key={index} className="flex items-center gap-4">
-                    <div className="bg-green-900 bg-opacity-30 p-2 rounded-full">
+                    <div className="bg-green-900 bg-opacity-30 p-2 rounded-full shrink-0">
                       {channel.icon === "mail" && <Mail className="h-5 w-5 text-green-400" aria-hidden="true" />}
                       {channel.icon === "github" && <Github className="h-5 w-5 text-green-400" aria-hidden="true" />}
                       {channel.icon === "linkedin" && (
@@ -275,7 +275,7 @@ export default function TerminalOutput({ type }: TerminalOutputProps) {
                     </div>
                     <div>
                       <h3 className="font-medium text-green-300">{channel.name}</h3>
-                      <Link href={channel.url} target="_blank" className="text-gray-400 hover:text-green-400">
+                      <Link href={channel.url} target="_blank" className="text-gray-400 hover:text-green-400 break-all block w-full">
                         {channel.display}
                       </Link>
                     </div>
