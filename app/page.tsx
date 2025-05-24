@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react"
 import Terminal from "@/components/terminal"
 import { useTheme } from "next-themes"
-import AntiInspect from "@/lib/antiInspect"
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
@@ -30,8 +29,7 @@ export default function Home() {
   if (!mounted) return null
 
   return (
-    <main className="min-h-screen sm:min-h-[100dvh] bg-black text-green-500 font-mono overflow-hidden">
-      <AntiInspect />
+    <main className="min-h-screen sm:min-h-[100dvh] bg-gray-900 text-green-500 font-mono overflow-hidden">
       <Terminal />
     </main>
   )
