@@ -232,7 +232,7 @@ export const educationData = [
     institution: "SMKN 1 Kota Tangerang",
     period: "Graduated: 2025",
     details: "Certification: Certified KKNI Level II Computer Network Engineering.",
-    gpa: "GPA: 92/100"
+    gpa: "GPA: 87/100"
   },
 ]
 
