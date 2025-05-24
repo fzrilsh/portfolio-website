@@ -50,8 +50,8 @@ export const experienceData = [
 
 export const skillsData = {
   programming: ["JavaScript", "PHP", "Python", "C"],
-  frontend: ["React.js", "Next.js", "Tailwind CSS", "Alpine.js", "HTML", "CSS"],
-  backend: ["Laravel", "Express.js", "Node.js", "Livewire"],
+  frontend: ["React.js", "Next.js", "Tailwind CSS", "Alpine.js", "HTML5", "CSS3"],
+  backend: ["Laravel", "Livewire", "Express.js", "Go"],
   databases: ["MySQL", "MongoDB"],
   tools: ["Git", "Docker", "Prisma", "Arduino", "Raspberry Pi"],
   languages: ["English", "Indonesian"],
