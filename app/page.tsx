@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-black text-green-500 font-mono overflow-hidden">
-      <AntiInspect />
+      {/* <AntiInspect /> */}
       <Terminal />
     </main>
   )
