@@ -6,15 +6,17 @@ import { TerminalIcon, Download, Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import TerminalOutput from "@/components/terminal-output"
 import TerminalInput from "@/components/terminal-input"
+import { useRouter } from "next/navigation"
 
 export default function Terminal() {
+  const router = useRouter()
   const [history, setHistory] = useState<Array<{ command: string; output: string }>>([])
   const [currentCommand, setCurrentCommand] = useState("")
   const [showWelcome, setShowWelcome] = useState(true)
   const terminalRef = useRef<HTMLDivElement>(null)
   const [isPWAInstallable, setIsPWAInstallable] = useState(false)
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null)
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const availableCommands = [
     { command: "help", description: "Show available commands" },
@@ -27,6 +29,7 @@ export default function Terminal() {
     { command: "contact", description: "Display my contact information" },
     { command: "clear", description: "Clear the terminal" },
     { command: "all", description: "Show all information" },
+    { command: "bg-remover", description: "Remove background on your photo" }
   ]
 
   useEffect(() => {
@@ -106,6 +109,9 @@ export default function Terminal() {
       case "all":
         output = "all"
         break
+      case "bg-remover":
+        router.push('/bg-remover')
+        break
       case "":
         output = ""
         break
@@ -140,7 +146,7 @@ export default function Terminal() {
 
   return (
     <div className="relative h-screen flex flex-col">
-      <div className="flex items-center justify-between p-2 bg-gray-900 border-b border-gray-800 rounded-t-lg relative">
+      <div className="flex items-center justify-between p-2 bg-gray-800 border-b border-gray-700 rounded-t-lg relative">
         <div className="flex gap-1.5">
           <div className="w-3 h-3 rounded-full bg-red-500" aria-hidden="true" />
           <div
@@ -217,7 +223,7 @@ export default function Terminal() {
 
       <div
         ref={terminalRef}
-        className="flex-1 p-4 overflow-y-auto bg-black bg-opacity-90 font-mono text-sm md:text-base relative"
+        className="flex-1 p-4 overflow-y-auto bg-grey-900 bg-opacity-90 font-mono text-sm md:text-base relative"
         style={{
           backgroundImage: "radial-gradient(rgba(0, 150, 0, 0.05) 1px, transparent 0)",
           backgroundSize: "25px 25px",
@@ -274,8 +280,8 @@ export default function Terminal() {
         </div>
       </div>
 
-      <div className="p-2 bg-gray-900 border-t border-gray-800 rounded-b-lg overflow-x-auto">
-        <div className="flex gap-2 flex-wrap">
+      <div className="p-2 bg-gray-800 border-t border-gray-700 rounded-b-lg overflow-x-auto">
+        <div className="flex gap-2 flex-wrap justify-center items-center">
           {availableCommands.map((cmd) => (
             <Button
               key={cmd.command}
