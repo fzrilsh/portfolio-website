@@ -30,7 +30,7 @@ export default function Home() {
   if (!mounted) return null
 
   return (
-    <main className="min-h-screen bg-black text-green-500 font-mono overflow-hidden">
+    <main className="min-h-screen sm:min-h-[100dvh] bg-black text-green-500 font-mono overflow-hidden">
       <AntiInspect />
       <Terminal />
     </main>
