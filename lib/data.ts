@@ -121,6 +121,15 @@ export const projectsData = [
     githubUrl: "#",
   },
   {
+    title: "BlindMaze",
+    description:
+      "2D Maze Game with HTML, CSS, and JS.",
+    image: "/imgs/blindmaze.png",
+    technologies: ["HTML", "CSS", "JS", "A*"],
+    liveUrl: "https://www.fazrilsh.com/games/blindmaze",
+    githubUrl: "#",
+  },
+  {
     title: "Transfermrkt",
     description:
       "A Node.js module to scrape transfer player and club data from Transfermarkt. Also published on npm.",
