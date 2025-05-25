@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlindMaze</title>
+    <meta name="description" content="BlindMaze created with Vanilla HTML5, CSS, and Javascript.">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <!-- Mobile Warning -->
+    <div class="mobile-warning" id="mobileWarning">
+        <div class="warning-container">
+            <div class="warning-icon">⚠️</div>
+            <h1 class="warning-title">Desktop Required</h1>
+            <p class="warning-message">
+                BlindMaze is designed for desktop experience and requires a physical keyboard for optimal gameplay.
+            </p>
+
+            <div class="desktop-icon">🖥️</div>
+
+            <div class="requirements-list">
+                <h4>System Requirements:</h4>
+                <ul>
+                    <li>Desktop or Laptop Computer</li>
+                    <li>Physical Keyboard for Controls</li>
+                    <li>Screen Resolution: 812px or wider</li>
+                    <li>Modern Web Browser</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instruction Menu -->
+    <div class="screen" id="menu">
+        <div class="welcome-container">
+            <h1 class="game-title">BlindMaze</h1>
+            <div class="input-group">
+                <input type="text" class="username-input" id="usernameInput" placeholder="Enter your username">
+            </div>
+            <div>
+                <button class="btn btn-primary" id="playGame" disabled>Play Game</button>
+                <button class="btn btn-secondary" id="showInstruction">Show Instructions</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instructions Modal -->
+    <div class="modal" id="instructions">
+        <div class="modal-content">
+            <h3>How to Play BlindMaze</h3>
+            <p><strong>Objective:</strong> Navigate through the maze from start (green) to finish (red) without running
+                out of time or HP.</p>
+            <p><strong>Controls:</strong> Use arrow keys or WASD to move your character (blue dot) through the maze.</p>
+            <p><strong>Rules:</strong></p>
+            <p>• 10 seconds for memorizing the maze</p>
+            <p>• After memorizing, walls will hidden.</p>
+            <p>• You have 5 HP and limited time for each stage</p>
+            <p>• Hitting walls or obstacles will cost you HP</p>
+            <p>• Complete stages to progress and increase difficulty</p>
+            <p>• Try to achieve the highest stage possible!</p>
+            <button class="btn btn-primary">Got It!</button>
+        </div>
+    </div>
+
+    <!-- Game Board Screen -->
+    <div class="screen" id="gameboard">
+        <button class="back-btn">← Back</button>
+        <div class="game-container">
+            <div class="maze-container" id="mazeContainer">
+                <!-- Maze cells will be generated here -->
+            </div>
+            <div class="info-panel">
+                <div class="info-item">
+                    <div class="info-label">Player</div>
+                    <div class="info-value" id="playerName">Player</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Stage</div>
+                    <div class="info-value" id="stageNumber">1</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Time Left</div>
+                    <div class="info-value" id="timeLeft">60s</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">HP</div>
+                    <div class="info-value">
+                        <div class="hp-container" id="hpContainer">
+                            <div class="hp-heart"></div>
+                            <div class="hp-heart"></div>
+                            <div class="hp-heart"></div>
+                            <div class="hp-heart"></div>
+                            <div class="hp-heart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div class="screen" id="gameOver">
+        <div class="gameover-container">
+            <h1 class="gameover-title">Game Over!</h1>
+            <div class="score-info">
+                <div class="score-item">Player: <span id="finalPlayerName">Player</span></div>
+                <div class="score-item">Final Stage: <span id="finalStage">1</span></div>
+            </div>
+            <div>
+                <button class="btn btn-primary" id="saveScore">Save Score</button>
+                <button class="btn btn-secondary" id="showLeaderboard">Leaderboard</button>
+                <button class="btn btn-secondary" id="playAgain">Play Again</button>
+                <button class="btn btn-primary" id="reset">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaderboard Screen -->
+    <div class="screen" id="leaderboard">
+        <button class="back-btn">← Back</button>
+        <div class="leaderboard-container">
+            <h1 class="leaderboard-title">Leaderboard</h1>
+            <table class="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Username</th>
+                        <th>Stage</th>
+                        <th>Time Played</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboardBody">
+                </tbody>
+            </table>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn btn-secondary">Back to Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert Popup Template -->
+    <div class="alert-popup" id="alertPopup"></div>
+
+    <!-- helper -->
+    <script src="lib/helper.js"></script>
+
+    <!-- components -->
+    <script src="lib/components/Player.js"></script>
+    <script src="lib/components/Cell.js"></script>
+
+    <!-- screens -->
+    <script src="lib/screens/Leaderboard.js"></script>
+    <script src="lib/screens/GameOver.js"></script>
+    <script src="lib/screens/Gameboard.js"></script>
+    <script src="lib/screens/Menu.js"></script>
+    <script src="lib/Screen.js"></script>
+
+    <!-- general script -->
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>
